@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="MemberIDSample" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="984.666666666667,11430.6666666667" sap2010:WorkflowViewState.IdRef="MemberIDSample_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="MemberIDSample" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1026.66666666667,21261.3333333333" sap2010:WorkflowViewState.IdRef="MemberIDSample_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="21">
+    <scg:List x:TypeArguments="x:String" Capacity="46">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -22,10 +22,14 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="38">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -44,9 +48,11 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MemberIDSample" sap:VirtualizedContainerService.HintSize="964.666666666667,11370.6666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MemberIDSample" sap:VirtualizedContainerService.HintSize="1006.66666666667,21201.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="ClaimsFiles" />
       <Variable x:TypeArguments="ui:UiElement" Name="PatientMemberID" />
@@ -59,7 +65,6 @@
       <Variable x:TypeArguments="ui:GenericValue" Name="PatientAddressValue" />
       <Variable x:TypeArguments="ui:UiElement" Name="PractionerName" />
       <Variable x:TypeArguments="ui:GenericValue" Name="PractionerAddressValue" />
-      <Variable x:TypeArguments="ui:UiElement" Name="ProviderName" />
       <Variable x:TypeArguments="ui:GenericValue" Name="ProviderNameValue" />
       <Variable x:TypeArguments="ui:UiElement" Name="ProviderTaxID" />
       <Variable x:TypeArguments="ui:GenericValue" Name="ProviderTaxIDValue" />
@@ -95,26 +100,38 @@
       <Variable x:TypeArguments="ui:GenericValue" Name="YesBOX2" />
       <Variable x:TypeArguments="ui:GenericValue" Name="PatientAutoAccident" />
       <Variable x:TypeArguments="ui:GenericValue" Name="NoBox2" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="Front1" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="PatientProffofPayment" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="CopyCreditBox" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="CopyReceiptBox" />
       <Variable x:TypeArguments="ui:GenericValue" Name="DiscountBox" />
       <Variable x:TypeArguments="ui:GenericValue" Name="PaymentInformationRelation" />
       <Variable x:TypeArguments="ui:GenericValue" Name="DiscountBox2" />
       <Variable x:TypeArguments="ui:GenericValue" Name="amountboxEX" />
       <Variable x:TypeArguments="ui:GenericValue" Name="AmountBox2EX" />
       <Variable x:TypeArguments="ui:GenericValue" Name="BalanceBoxEX" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="OtherBox2EX" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="OtherInformationEX" />
-      <Variable x:TypeArguments="ui:GenericValue" Name="TheOtherBox" />
+      <Variable x:TypeArguments="x:String" Name="CoveredByInsurance" />
+      <Variable x:TypeArguments="x:String" Name="TheOtherInformation" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="AttendingPractionerNameValue" />
+      <Variable x:TypeArguments="ui:UiElement" Name="SubscriberID" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="SubscriberValueID" />
+      <Variable x:TypeArguments="ui:UiElement" Name="SubscriberMemberID" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="SubscriberMemberIDValue" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="SubscriberOtherValue" />
+      <Variable x:TypeArguments="ui:UiElement" Name="SubscriberOther" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="NotCoveredByInsurance" />
+      <Variable x:TypeArguments="ui:UiElement" Name="NameOfOtherInsurance" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="NameOfOtherInsuranceValue" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="DidOherInsuranceMakePayment1" />
+      <Variable x:TypeArguments="sd:DataTable" Name="HealthData" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="DidOherInsuranceMakePayment2" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="CheckPayment" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="PatientProofOfPayment" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="CreditCardPayment" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="ReceiptPayment" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="922.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="964.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[ClaimsFiles]</OutArgument>
       </Assign.To>
@@ -122,38 +139,81 @@
         <InArgument x:TypeArguments="s:String[]">[directory.getfiles("C:\Users\Prav\Documents\UiPath\VAHealth\Health Claims Forms Demo\PDFS")]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="922.666666666667,11176.6666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ClaimsFiles]">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[HealthData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="964.666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Sheet1.xlsx" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="964.666666666667,20880.6666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ClaimsFiles]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="file" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="886,11038" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="928,20742" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="844,10946" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="886,20650" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[file.ToString]" sap:VirtualizedContainerService.HintSize="802,86.6666666666667" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
-              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'AcroRd32.exe claims-for...'" sap:VirtualizedContainerService.HintSize="802,10727.3333333333" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="72565ba7846003e7de9ac52d6190bffd" Selector="&lt;wnd app='acrord32.exe' cls='AcrobatSDIWindow' title='claims-form*.pdf - Adobe Acrobat Reader DC' /&gt;">
+              <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[file.ToString]" sap:VirtualizedContainerService.HintSize="844,86.6666666666667" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'AcroRd32.exe claims-for...'" sap:VirtualizedContainerService.HintSize="844,20431.3333333333" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="72565ba7846003e7de9ac52d6190bffd" Selector="&lt;wnd app='acrord32.exe' cls='AcrobatSDIWindow' title='claims-form*.pdf - Adobe Acrobat Reader DC' /&gt;">
                 <ui:WindowScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="768,10581.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="810,20285.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:AnchorBase AnchorPosition="Left" DisplayName="Get Patient Member ID" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_1">
+                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Patient Name" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_20">
+                        <ui:AnchorBase.Action>
+                          <ActivityAction x:TypeArguments="ui:Anchor">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
+                            </ActivityAction.Argument>
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Patient Full Name" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_20">
+                              <ui:GetValue.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f1cf691599635bce7d10208a32440a1c" Selector="&lt;ctrl role='editable text' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:GetValue.Target>
+                              <ui:GetValue.Value>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientNameValue]</OutArgument>
+                              </ui:GetValue.Value>
+                            </ui:GetValue>
+                          </ActivityAction>
+                        </ui:AnchorBase.Action>
+                        <ui:AnchorBase.AnchorProvider>
+                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Patient Full Name" FoundElement="[PatientName]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_20">
+                            <ui:WaitUiElementAppear.Target>
+                              <ui:Target Element="{x:Null}" InformativeScreenshot="0d36886c1c4b9c70d125d8c27ee48e83" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='1' role='row' /&gt;&lt;ctrl idx='1' role='cell' /&gt;">
+                                <ui:Target.ClippingRegion>
+                                  <ui:Region Rectangle="0, 2, 140, 38" />
+                                </ui:Target.ClippingRegion>
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:WaitUiElementAppear.Target>
+                          </ui:WaitUiElementAppear>
+                        </ui:AnchorBase.AnchorProvider>
+                      </ui:AnchorBase>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_44" Text="[PatientNameValue]" />
+                      <ui:AnchorBase AnchorPosition="Left" DisplayName="Get Patient Member ID" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_1">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -194,7 +254,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Left" DisplayName="Extract Patient Date of Birth" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_2">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_38" Text="[PatientMemberIDValue]" />
+                      <ui:AnchorBase AnchorPosition="Left" DisplayName="Extract Patient Date of Birth" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_2">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -235,15 +296,16 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Left" DisplayName="Extract Patient Name" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_3">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_45" Text="[PatientDOBValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Subscriber Value" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_21">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
                             </ActivityAction.Argument>
-                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Patient Full Name" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_3">
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Extract Subscriber Value" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_21">
                               <ui:GetValue.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="31a81d3b5089a47ed579339db0e6d826" Selector="&lt;ctrl role='editable text' /&gt;">
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0851b1aa21ba69c33896974e89674200" Selector="&lt;ctrl role='editable text' /&gt;">
                                   <ui:Target.TimeoutMS>
                                     <InArgument x:TypeArguments="x:Int32" />
                                   </ui:Target.TimeoutMS>
@@ -253,15 +315,15 @@
                                 </ui:Target>
                               </ui:GetValue.Target>
                               <ui:GetValue.Value>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientNameValue]</OutArgument>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[SubscriberValueID]</OutArgument>
                               </ui:GetValue.Value>
                             </ui:GetValue>
                           </ActivityAction>
                         </ui:AnchorBase.Action>
                         <ui:AnchorBase.AnchorProvider>
-                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Patient Full Name" FoundElement="[PatientName]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_3">
+                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'Sub Value'" FoundElement="[SubscriberID]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_21">
                             <ui:WaitUiElementAppear.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4cf87d54aa7473e5978a12a8eb9fb3ea" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='1' role='row' /&gt;&lt;ctrl name='1. Patient’s Name:   (Last) (First) (Middle) ' role='text' /&gt;">
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="ccb4e290244f636f29ff327c830ecf79" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl name='4. Subscriber’s Name:   (Last) (First) (Middle) ' role='text' /&gt;">
                                 <ui:Target.TimeoutMS>
                                   <InArgument x:TypeArguments="x:Int32" />
                                 </ui:Target.TimeoutMS>
@@ -273,13 +335,180 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Patient Address" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_4">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_46" Text="[SubscriberValueID]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Find Subcriber MemberID" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_19">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
                             </ActivityAction.Argument>
-                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Patient Address" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_4">
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Subscriber ID Value" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_19">
+                              <ui:GetValue.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="90962e475de5ac1885441eebd541b36c" Selector="&lt;ctrl role='editable text' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:GetValue.Target>
+                              <ui:GetValue.Value>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[SubscriberMemberIDValue]</OutArgument>
+                              </ui:GetValue.Value>
+                            </ui:GetValue>
+                          </ActivityAction>
+                        </ui:AnchorBase.Action>
+                        <ui:AnchorBase.AnchorProvider>
+                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Subscriber ID" FoundElement="[SubscriberMemberID]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_19">
+                            <ui:WaitUiElementAppear.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4637bbb1d0294ef2d540657dd6ac16db" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl name='5. Subscriber   Member I.D. # ' role='text' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:WaitUiElementAppear.Target>
+                          </ui:WaitUiElementAppear>
+                        </ui:AnchorBase.AnchorProvider>
+                      </ui:AnchorBase>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_43" Text="[SubscriberMemberIDValue]" />
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1949.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence DisplayName="Checking Patient Relation To Sub" sap:VirtualizedContainerService.HintSize="526,1857.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="OtherBox" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'Self'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_56">
+                            <ui:GetAttribute.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[SelfBox]</OutArgument>
+                            </ui:GetAttribute.Result>
+                            <ui:GetAttribute.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e925b423e2636f64cd2ba0841b8996f4" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetAttribute.Target>
+                          </ui:GetAttribute>
+                          <If Condition="[SelfBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_56">
+                            <If.Else>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_57">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">["Self"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'Spouse'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_57">
+                            <ui:GetAttribute.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[SpouseBox]</OutArgument>
+                            </ui:GetAttribute.Result>
+                            <ui:GetAttribute.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1082baf6d4415b3b98752dce52ceca9c" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetAttribute.Target>
+                          </ui:GetAttribute>
+                          <If Condition="[SpouseBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_57">
+                            <If.Else>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_58">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">["Spouse"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'Child'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_58">
+                            <ui:GetAttribute.Result>
+                              <OutArgument x:TypeArguments="ui:GenericValue">[ChildBox]</OutArgument>
+                            </ui:GetAttribute.Result>
+                            <ui:GetAttribute.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4e513d0484f7b23569a82468eb79842a" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetAttribute.Target>
+                          </ui:GetAttribute>
+                          <If Condition="[ChildBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_58">
+                            <If.Else>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_59">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">["Child"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'Other'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_59">
+                            <ui:GetAttribute.Result>
+                              <OutArgument x:TypeArguments="x:String">[OtherBox]</OutArgument>
+                            </ui:GetAttribute.Result>
+                            <ui:GetAttribute.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="9e6557f9c805cada06bab834524fc186" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetAttribute.Target>
+                          </ui:GetAttribute>
+                          <If Condition="[OtherBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_59">
+                            <If.Else>
+                              <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_60">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="ui:GenericValue">["Other"]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </If.Else>
+                          </If>
+                          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_64" Text="[PatientRelationshipToSub]" />
+                        </Sequence>
+                      </Sequence>
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Patient Address" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_22">
+                        <ui:AnchorBase.Action>
+                          <ActivityAction x:TypeArguments="ui:Anchor">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
+                            </ActivityAction.Argument>
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Patient Address" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_22">
                               <ui:GetValue.Target>
                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="72abb9088373cd95eed670ac31eaea4a" Selector="&lt;ctrl role='editable text' /&gt;">
                                   <ui:Target.TimeoutMS>
@@ -297,7 +526,7 @@
                           </ActivityAction>
                         </ui:AnchorBase.Action>
                         <ui:AnchorBase.AnchorProvider>
-                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Patient Address" FoundElement="[PatientAddress]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_4">
+                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Patient Address" FoundElement="[PatientAddress]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_22">
                             <ui:WaitUiElementAppear.Target>
                               <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="ae2e3697381fa0706c43fc15f4f9a283" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl name='7. Patient’s Address: ' role='text' /&gt;">
                                 <ui:Target.TimeoutMS>
@@ -311,15 +540,145 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Practioner Name" sap:VirtualizedContainerService.HintSize="726,352" sap2010:WorkflowViewState.IdRef="AnchorBase_5">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_50" Text="[PatientAddressValue]" />
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1857.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_30">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[HMObox]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8254a65bc31595a5cf0a10c9c51a5d84" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[HMObox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_30">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_31">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["HMO"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_31">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[OptionsBOX]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="848063a5f327c0d33fc12e0f4c275cc2" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[OptionsBOX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_31">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_32">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Options/Alliant"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_32">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[PPOBox]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="bd9b5eecb6acbdf805bfd7fd237a3e61" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[PPOBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_32">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_33">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["PPO"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_33">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[MedicareBox]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="9b9856fb11008f07b8241a8de5318b4d" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[MedicareBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_33">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_34">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Medicare"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_51" Text="[PatientTypeInsurance]" />
+                      </Sequence>
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="768,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="pgdn" KeyModifiers="None" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Practioner Name" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_5">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
                             </ActivityAction.Argument>
-                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Practioner Address" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_5">
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Attending Practioner Name" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_5">
                               <ui:GetValue.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2d5fd0da5c6232efde47e0571d165bbd" Selector="&lt;ctrl role='editable text' /&gt;">
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2869e6b4b5a268c5c60b6e1d6504249f" Selector="&lt;ctrl role='editable text' /&gt;">
                                   <ui:Target.TimeoutMS>
                                     <InArgument x:TypeArguments="x:Int32" />
                                   </ui:Target.TimeoutMS>
@@ -329,7 +688,7 @@
                                 </ui:Target>
                               </ui:GetValue.Target>
                               <ui:GetValue.Value>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[PractionerAddressValue]</OutArgument>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[AttendingPractionerNameValue]</OutArgument>
                               </ui:GetValue.Value>
                             </ui:GetValue>
                           </ActivityAction>
@@ -337,9 +696,9 @@
                         <ui:AnchorBase.AnchorProvider>
                           <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Practioner Name" FoundElement="[PractionerName]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_5">
                             <ui:WaitUiElementAppear.Target>
-                              <ui:Target Element="{x:Null}" InformativeScreenshot="d2076fdc41895832403e70b59866171f" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl name='10. Practitioner Information:   Attending Practitioner’s Name:  *' role='text' /&gt;">
+                              <ui:Target Element="{x:Null}" InformativeScreenshot="3e74bb8788e677fce5212132e8889330" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl name='10. Practitioner Information:   Attending Practitioner’s Name:  *' role='text' /&gt;">
                                 <ui:Target.ClippingRegion>
-                                  <ui:Region Rectangle="0, 0, 218, 46" />
+                                  <ui:Region Rectangle="0, 18, 217, 25" />
                                 </ui:Target.ClippingRegion>
                                 <ui:Target.TimeoutMS>
                                   <InArgument x:TypeArguments="x:Int32" />
@@ -352,13 +711,14 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Provider Name" sap:VirtualizedContainerService.HintSize="726,352" sap2010:WorkflowViewState.IdRef="AnchorBase_6">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_28" Text="[AttendingPractionerNameValue]" />
+                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_17">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
                             </ActivityAction.Argument>
-                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Find Value of Provider Name" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_6">
+                            <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'editable text'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_17">
                               <ui:GetValue.Target>
                                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c1617c36f9f0ab5216bc7e7a66438dbc" Selector="&lt;ctrl role='editable text' /&gt;">
                                   <ui:Target.TimeoutMS>
@@ -376,11 +736,11 @@
                           </ActivityAction>
                         </ui:AnchorBase.Action>
                         <ui:AnchorBase.AnchorProvider>
-                          <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Provider Name" FoundElement="[ProviderName]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_6">
+                          <ui:WaitUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'editable text'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_17">
                             <ui:WaitUiElementAppear.Target>
-                              <ui:Target Element="{x:Null}" InformativeScreenshot="7479dc601430b9ab1b4538e43a99c35c" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl name='11. Provider Information:   Provider’s Name:   Provider’s Tax I.*' role='text' /&gt;">
+                              <ui:Target Element="{x:Null}" InformativeScreenshot="c9f1c6f675e2a18f2cf6143ef981344c" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl name='11. Provider Information:   Provider’s Name:   Provider’s Tax I.*' role='text' /&gt;">
                                 <ui:Target.ClippingRegion>
-                                  <ui:Region Rectangle="1, 2, 180, 32" />
+                                  <ui:Region Rectangle="1, 18, 122, 18" />
                                 </ui:Target.ClippingRegion>
                                 <ui:Target.TimeoutMS>
                                   <InArgument x:TypeArguments="x:Int32" />
@@ -393,7 +753,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Tax ID" sap:VirtualizedContainerService.HintSize="726,352" sap2010:WorkflowViewState.IdRef="AnchorBase_7">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_37" Text="[ProviderNameValue]" />
+                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Tax ID" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_7">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -434,7 +795,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Provider Address Block" sap:VirtualizedContainerService.HintSize="726,352" sap2010:WorkflowViewState.IdRef="AnchorBase_8">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_27" Text="[ProviderTaxIDValue]" />
+                      <ui:AnchorBase AnchorPosition="Top" DisplayName="Provider Address Block" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_8">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -475,7 +837,134 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Date Of Incident" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_9">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_29" Text="[ProviderBillingAddressValue]" />
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1004" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_34">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[YesBOX1]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1e23db85fbe3cc8a3bc9fc669f18ac96" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[YesBOX1=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_34">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_35">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientEmployment]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_35">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="x:String">[NoBox1]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1aec5d9fd0a2cc96742cd932057d85be" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[NoBox1=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_35">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_36">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientEmployment]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_65" Text="[PatientEmployment]" />
+                      </Sequence>
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1004" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_36">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[YesBOX2]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1406669e1549efb06be105aa3dcd4c4d" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[YesBOX2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_36">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_37">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientAutoAccident]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_37">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[NoBox2]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="70535fde49e993591c8d7d2850c18993" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[NoBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_37">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_38">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientAutoAccident]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_53" Text="[PatientAutoAccident]" />
+                      </Sequence>
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Date Of Incident" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_9">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -516,7 +1005,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Date of Service " sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_11">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_30" Text="[DateofIncidentValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Date of Service " sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_11">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -554,7 +1044,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Place Of Service" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_12">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_31" Text="[DateofServiceValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Place Of Service" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_12">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -592,7 +1083,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Diagnosis Code Extraction" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_13">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_32" Text="[PlaceOfServiceValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Diagnosis Code Extraction" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_13">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -630,7 +1122,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Procedure Code" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_14">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_33" Text="[DiagnosisCodeValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Procedure Code" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_14">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -668,7 +1161,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Units/Days" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_15">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_34" Text="[ProcedureCodeValue]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Units/Days" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_15">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -706,7 +1200,8 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Amount Paid" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_16">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_36" Text="[UnitsDaysValues]" />
+                      <ui:AnchorBase AnchorPosition="Auto" DisplayName="Amount Paid" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_16">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
                             <ActivityAction.Argument>
@@ -744,708 +1239,478 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <Sequence sap:VirtualizedContainerService.HintSize="726,6058.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_35" Text="[AmountPaidValue]" />
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="768,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="pgdn" KeyModifiers="None" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1430.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence sap:VirtualizedContainerService.HintSize="610,5966.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="Checking Patient Relation To Sub" sap:VirtualizedContainerService.HintSize="568,1758.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                            <Sequence.Variables>
-                              <Variable x:TypeArguments="x:String" Name="OtherBox" />
-                            </Sequence.Variables>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_1">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[SelfBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="d52531e29255ef511f71f0d9b685dc61" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[SelfBox = &quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_2">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Self"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[SpouseBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4a5013fcbd3b9f523ffc9a851a91bce6" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[SpouseBox = &quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_3">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Spouse"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_3">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[ChildBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4e513d0484f7b23569a82468eb79842a" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[ChildBox = &quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_3">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_4">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Child"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_4">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[TheOtherBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e6504eb720fb7e740646f8837d3992e9" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='2' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[OtherBox = &quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_4">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_5">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientRelationshipToSub]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Other"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                          </Sequence>
-                          <Sequence sap:VirtualizedContainerService.HintSize="568,4076" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="526,134" sap2010:WorkflowViewState.IdRef="GetAttribute_5">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[HMObox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8254a65bc31595a5cf0a10c9c51a5d84" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[HMObox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="526,212.666666666667" sap2010:WorkflowViewState.IdRef="If_5">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_6">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["HMO"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="526,134" sap2010:WorkflowViewState.IdRef="GetAttribute_6">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[OptionsBOX]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="848063a5f327c0d33fc12e0f4c275cc2" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[OptionsBOX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="526,212.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_7">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Options/Alliant"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="526,134" sap2010:WorkflowViewState.IdRef="GetAttribute_7">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[PPOBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="bd9b5eecb6acbdf805bfd7fd237a3e61" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[PPOBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="526,212.666666666667" sap2010:WorkflowViewState.IdRef="If_7">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_8">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["PPO"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="526,134" sap2010:WorkflowViewState.IdRef="GetAttribute_8">
-                              <ui:GetAttribute.Result>
-                                <OutArgument x:TypeArguments="ui:GenericValue">[MedicareBox]</OutArgument>
-                              </ui:GetAttribute.Result>
-                              <ui:GetAttribute.Target>
-                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="9b9856fb11008f07b8241a8de5318b4d" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='3' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
-                                  <ui:Target.TimeoutMS>
-                                    <InArgument x:TypeArguments="x:Int32" />
-                                  </ui:Target.TimeoutMS>
-                                  <ui:Target.WaitForReady>
-                                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                                  </ui:Target.WaitForReady>
-                                </ui:Target>
-                              </ui:GetAttribute.Target>
-                            </ui:GetAttribute>
-                            <If Condition="[MedicareBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="526,212.666666666667" sap2010:WorkflowViewState.IdRef="If_8">
-                              <If.Else>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_9">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="ui:GenericValue">[PatientTypeInsurance]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="ui:GenericValue">["Medicare"]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </If.Else>
-                            </If>
-                            <Sequence sap:VirtualizedContainerService.HintSize="526,1004" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_9">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[YesBOX1]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1e23db85fbe3cc8a3bc9fc669f18ac96" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[YesBOX1=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_9">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_10">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientEmployment]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_10">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="x:String">[NoBox1]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1aec5d9fd0a2cc96742cd932057d85be" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[NoBox1=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_10">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_11">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientEmployment]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_17" Text="[PatientEmployment]" />
-                            </Sequence>
-                            <Sequence sap:VirtualizedContainerService.HintSize="526,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_7">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_11">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[YesBOX2]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="6707d320d968e033d00a603254f78a2a" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='2' name='□ ' role='text' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[YesBOX2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_11">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_12">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientAutoAccident]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_12">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[NoBox2]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="70535fde49e993591c8d7d2850c18993" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='5' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[NoBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_12">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_13">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientAutoAccident]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_18" Text="[PatientAutoAccident]" />
-                            </Sequence>
-                            <Sequence sap:VirtualizedContainerService.HintSize="526,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_13">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[Front1]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="ff778f55a2a2e2000096dcd5e21f6fd0" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[Front1=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_13">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_14">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientProffofPayment]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Check"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_14">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[CopyCreditBox]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2e841132729e6f03fef9e3d6a41f3e9f" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='19' role='row' /&gt;&lt;ctrl role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[CopyCreditBox=&quot;□&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_14">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_15">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PatientProffofPayment]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Credit Card"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_15">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[CopyReceiptBox]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="8a909bbdce98d50e883152d27ac577e5" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='22' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[CopyReceiptBox=&quot;□&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_15">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_16">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[CopyReceiptBox]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Receipt"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_19" Text="[PatientProffofPayment]" />
-                            </Sequence>
-                            <Sequence sap:VirtualizedContainerService.HintSize="526,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_16">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[DiscountBox]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="31213b1eb0a832c6479bac8c50046dd6" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[DiscountBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_16">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_17">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_17">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[DiscountBox2]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0fb6d4e5f85220499fa7d0e36c6a2eef" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[DiscountBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_17">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_18">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_20" Text="[PaymentInformationRelation]" />
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_18">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[amountboxEX]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="69fc67a642bef45986b17cdd0ed8e11b" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='18' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[amountboxEX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_18">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_19">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_19">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[AmountBox2EX]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c325efc5612fa58fccedafcd46f8b423" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='18' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[AmountBox2EX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_19">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_20">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["NO"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_21" Text="[PaymentInformationRelation]" />
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_20">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[BalanceBoxEX]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="6790168df29a7a6ced745e283f8bd72f" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='20' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[BalanceBoxEX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_20">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_21">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_21">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[BalanceBox2]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1905c4bb32d2a9e662df9c2d0355dfb1" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='20' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[BalanceBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,216" sap2010:WorkflowViewState.IdRef="If_21">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_22">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_22" Text="[PaymentInformationRelation]" />
-                            </Sequence>
-                            <Sequence sap:VirtualizedContainerService.HintSize="526,905.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_22">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[YesBOX2]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="64ac90210ebb0e106f9b0965e5825c41" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[YesBOX2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_22">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_23">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[OtherInformationEX]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                              <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_23">
-                                <ui:GetAttribute.Result>
-                                  <OutArgument x:TypeArguments="ui:GenericValue">[OtherBox2EX]</OutArgument>
-                                </ui:GetAttribute.Result>
-                                <ui:GetAttribute.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="2e491ccf1df8ca90f74d685c66da11f9" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='5' role='check box' /&gt;">
-                                    <ui:Target.TimeoutMS>
-                                      <InArgument x:TypeArguments="x:Int32" />
-                                    </ui:Target.TimeoutMS>
-                                    <ui:Target.WaitForReady>
-                                      <InArgument x:TypeArguments="ui:WaitForReady" />
-                                    </ui:Target.WaitForReady>
-                                  </ui:Target>
-                                </ui:GetAttribute.Target>
-                              </ui:GetAttribute>
-                              <If Condition="[OtherBox2EX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_23">
-                                <If.Else>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_24">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="ui:GenericValue">[OtherInformationEX]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Else>
-                              </If>
-                            </Sequence>
-                          </Sequence>
-                        </Sequence>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_53">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[CheckPayment]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3fbbb49c868b72edcf6265844f82b90d" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[CheckPayment=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_53">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_54">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientProofOfPayment]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Check"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_54">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[CreditCardPayment]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e3c88fc594eedf85755ca47f58ae8d24" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='19' role='row' /&gt;&lt;ctrl role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[CreditCardPayment=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_54">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_55">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientProofOfPayment]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Credit Card"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_55">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[ReceiptPayment]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7723e0e850e5a6aad3c166faac02391b" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='22' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[ReceiptPayment=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_55">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_56">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PatientProofOfPayment]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Receipt"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_63" Text="[PatientProofOfPayment]" />
                       </Sequence>
-                      <ui:CloseApplication DisplayName="Close All the Forms" sap:VirtualizedContainerService.HintSize="726,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,2908" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'text  □'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_41">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[DiscountBox]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="31213b1eb0a832c6479bac8c50046dd6" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[DiscountBox=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_41">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_42">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_42">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[DiscountBox2]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0fb6d4e5f85220499fa7d0e36c6a2eef" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[DiscountBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_42">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_43">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_60" Text="[PaymentInformationRelation]" />
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_43">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[amountboxEX]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="69fc67a642bef45986b17cdd0ed8e11b" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='18' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[amountboxEX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_43">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_44">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_44">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[AmountBox2EX]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="c325efc5612fa58fccedafcd46f8b423" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='18' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_61" Text="[PaymentInformationRelation]" />
+                        <If Condition="[AmountBox2EX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_44">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_45">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["NO"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_45">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[BalanceBoxEX]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="6790168df29a7a6ced745e283f8bd72f" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='20' role='row' /&gt;&lt;ctrl idx='1' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[BalanceBoxEX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_45">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_46">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_46">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[BalanceBox2]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1905c4bb32d2a9e662df9c2d0355dfb1" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='20' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[BalanceBox2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_46">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_47">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[PaymentInformationRelation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_62" Text="[PaymentInformationRelation]" />
+                      </Sequence>
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,2629.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="726,134" sap2010:WorkflowViewState.IdRef="GetAttribute_49">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="x:String">[CoveredByInsurance]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="64ac90210ebb0e106f9b0965e5825c41" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='4' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[TheOtherInformation=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="726,212.666666666667" sap2010:WorkflowViewState.IdRef="If_49">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_50">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[TheOtherInformation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">Yes</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="726,134" sap2010:WorkflowViewState.IdRef="GetAttribute_50">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[NotCoveredByInsurance]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0aba51f23e4e925da1b65d58ff33a02b" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='16' role='row' /&gt;&lt;ctrl idx='5' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[TheOtherInformation=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="726,212.666666666667" sap2010:WorkflowViewState.IdRef="If_50">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_51">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[TheOtherInformation]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">No</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_56" Text="[TheOtherInformation]" />
+                        <ui:AnchorBase AnchorPosition="Auto" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_23">
+                          <ui:AnchorBase.Action>
+                            <ActivityAction x:TypeArguments="ui:Anchor">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
+                              </ActivityAction.Argument>
+                              <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'editable text'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_23">
+                                <ui:GetValue.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="66867eab28c590519937232617f0af5a" Selector="&lt;ctrl role='editable text' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:GetValue.Target>
+                                <ui:GetValue.Value>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[SubscriberOtherValue]</OutArgument>
+                                </ui:GetValue.Value>
+                              </ui:GetValue>
+                            </ActivityAction>
+                          </ui:AnchorBase.Action>
+                          <ui:AnchorBase.AnchorProvider>
+                            <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'text Subscriber'" FoundElement="[SubscriberOther]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_23">
+                              <ui:WaitUiElementAppear.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0feef5a92c66e87c261e1d26630cc099" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='17' role='row' /&gt;&lt;ctrl name='Subscriber name for other insurance: ' role='text' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:WaitUiElementAppear.Target>
+                            </ui:WaitUiElementAppear>
+                          </ui:AnchorBase.AnchorProvider>
+                        </ui:AnchorBase>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_57" Text="[SubscriberOtherValue]" />
+                        <ui:AnchorBase AnchorPosition="Auto" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_24">
+                          <ui:AnchorBase.Action>
+                            <ActivityAction x:TypeArguments="ui:Anchor">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="ui:Anchor" Name="ContextAnchor" />
+                              </ActivityAction.Argument>
+                              <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'editable text'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="GetValue_24">
+                                <ui:GetValue.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="0e1be3b92e0d1e54d2b5d0b33891ac3a" Selector="&lt;ctrl role='editable text' /&gt;">
+                                    <ui:Target.TimeoutMS>
+                                      <InArgument x:TypeArguments="x:Int32" />
+                                    </ui:Target.TimeoutMS>
+                                    <ui:Target.WaitForReady>
+                                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                                    </ui:Target.WaitForReady>
+                                  </ui:Target>
+                                </ui:GetValue.Target>
+                                <ui:GetValue.Value>
+                                  <OutArgument x:TypeArguments="ui:GenericValue">[NameOfOtherInsuranceValue]</OutArgument>
+                                </ui:GetValue.Value>
+                              </ui:GetValue>
+                            </ActivityAction>
+                          </ui:AnchorBase.Action>
+                          <ui:AnchorBase.AnchorProvider>
+                            <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="Find Element 'text Name'" FoundElement="[NameOfOtherInsurance]" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_24">
+                              <ui:WaitUiElementAppear.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="f62e2a12c5dd35bf8f297c7f9bfc301d" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='20' role='row' /&gt;&lt;ctrl name='Name of other insurance company: ' role='text' /&gt;">
+                                  <ui:Target.TimeoutMS>
+                                    <InArgument x:TypeArguments="x:Int32" />
+                                  </ui:Target.TimeoutMS>
+                                  <ui:Target.WaitForReady>
+                                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                                  </ui:Target.WaitForReady>
+                                </ui:Target>
+                              </ui:WaitUiElementAppear.Target>
+                            </ui:WaitUiElementAppear>
+                          </ui:AnchorBase.AnchorProvider>
+                        </ui:AnchorBase>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_58" Text="[NameOfOtherInsuranceValue]" />
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="726,134" sap2010:WorkflowViewState.IdRef="GetAttribute_51">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[DidOherInsuranceMakePayment1]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="61278beac750ace485005df78cf89247" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='22' role='row' /&gt;&lt;ctrl idx='2' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[DidOherInsuranceMakePayment1]" sap:VirtualizedContainerService.HintSize="726,212.666666666667" sap2010:WorkflowViewState.IdRef="If_51">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_52">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[DidOherInsuranceMakePayment1]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["Yes"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="726,134" sap2010:WorkflowViewState.IdRef="GetAttribute_52">
+                          <ui:GetAttribute.Result>
+                            <OutArgument x:TypeArguments="ui:GenericValue">[DidOherInsuranceMakePayment2]</OutArgument>
+                          </ui:GetAttribute.Result>
+                          <ui:GetAttribute.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="3f3bba4569354524775984294b9c5a4e" Selector="&lt;wnd aaname='Document Pane' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd cls='AVL_AVView' title='AVPageView' /&gt;&lt;ctrl idx='22' role='row' /&gt;&lt;ctrl idx='3' role='check box' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:GetAttribute.Target>
+                        </ui:GetAttribute>
+                        <If Condition="[DidOherInsuranceMakePayment2=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="726,212.666666666667" sap2010:WorkflowViewState.IdRef="If_52">
+                          <If.Else>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_53">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="ui:GenericValue">[DidOherInsuranceMakePayment2]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="ui:GenericValue">["No"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_59" Text="[DidOherInsuranceMakePayment2]" />
+                      </Sequence>
+                      <ui:CloseApplication DisplayName="Close All the Forms" sap:VirtualizedContainerService.HintSize="768,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
                         <ui:CloseApplication.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" InformativeScreenshot="c8214c01c58c49f2b23b64dfbda083ce">
                             <ui:Target.TimeoutMS>
@@ -1457,7 +1722,14 @@
                           </ui:Target>
                         </ui:CloseApplication.Target>
                       </ui:CloseApplication>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Patient Member ID#" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;PatientMemberIDValue  &quot; + PatientMemberIDValue  +&#xA;&quot; PatientDOBValue &quot; + PatientDOBValue  + &#xA;&quot;PatientMemberIDValue  &quot; + PatientMemberIDValue  + &#xA;&quot;PatientNameValue  &quot; +PatientNameValue +&#xA;&quot;DateofIncidentValue  &quot; + DateofIncidentValue  +&#xA;&quot; DateofServiceValue &quot; +DateofServiceValue  +&#xA;&quot; DiagnosisCodeValue &quot; +DiagnosisCodeValue +&#xA;&quot;ProviderNameValue &quot; + ProviderNameValue+&#xA;&quot;ProcedureCodeValue &quot; + ProcedureCodeValue +&#xA;&quot;PractionerAddressValue &quot; + PractionerAddressValue +&#xA;&quot;ProviderBillingAddressValue &quot; + ProviderBillingAddressValue +&#xA;&quot;ProviderNameValue &quot; + ProviderNameValue  +&#xA;&quot;PatientRelationshipToSub &quot; + PatientRelationshipToSub + &#xA;&quot;PatientTypeInsurance&quot; + PatientTypeInsurance]" />
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{PatientAddressValue, PatientNameValue, PatientDOBValue, SubscriberValueID, SubscriberMemberIDValue, PatientRelationshipToSub, PatientAddressValue, PatientTypeInsurance, AttendingPractionerNameValue, ProviderNameValue, ProviderTaxIDValue, ProviderBillingAddressValue,ProviderTaxIDValue, PatientEmployment, PatientAutoAccident, DateofIncidentValue, DateofServiceValue,  PlaceofServiceValue, DiagnosisCodeValue, ProcedureCodeValue, UnitsDaysValues, AmountPaidValue, PatientProofOfPayment, PaymentInformationRelation, TheOtherInformation, SubscriberOtherValue, NameOfOtherInsuranceValue, DidOherInsuranceMakePayment2}]" DataTable="[HealthData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="768,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                      <ui:WriteRange AddHeaders="False" DataTable="[HealthData]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="768,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="Sheet1.xlsx">
+                        <ui:WriteRange.StartingCell>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                        </ui:WriteRange.StartingCell>
+                      </ui:WriteRange>
                     </Sequence>
                   </ActivityAction>
                 </ui:WindowScope.Body>
