@@ -1,0 +1,2 @@
+PatientNameValue,PatientDOBValue,SubscriberValueID,SubscriberMemberIDValue,PatientRelationshipToSub,PatientAddressValue,PatientTypeInsurance,AttendingPractionerName,ProviderNameValue,ProviderTaxIDValue,ProviderBillingAddressValue,PatientEmployment,PatientAutoAccident,DateOfIncidentValue,DateOfServiceValue,PlaceOfServiceValue,DiagnosisCodeValue,ProcedureCodeValue,UnitsDaysValues,AmountPaidValue,PatientProofOfPayment,PatientInformationRelation,TheOtherInformation,SubscriberOtherValue,NameofOtherInsuranceValue,DidOherInsuranceMakePayment2
+,,,,,,,,,,,,,,,,,,,,,,,100,,

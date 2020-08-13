@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="MemberIDSample" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1026.66666666667,21261.3333333333" sap2010:WorkflowViewState.IdRef="MemberIDSample_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="MemberIDSample" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1026.66666666667,18372" sap2010:WorkflowViewState.IdRef="MemberIDSample_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="46">
+    <scg:List x:TypeArguments="x:String" Capacity="25">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -29,7 +29,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="38">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="20">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -52,7 +52,7 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="MemberIDSample" sap:VirtualizedContainerService.HintSize="1006.66666666667,21201.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="MemberIDSample" sap:VirtualizedContainerService.HintSize="1006.66666666667,18312" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="ClaimsFiles" />
       <Variable x:TypeArguments="ui:UiElement" Name="PatientMemberID" />
@@ -125,6 +125,7 @@
       <Variable x:TypeArguments="ui:GenericValue" Name="PatientProofOfPayment" />
       <Variable x:TypeArguments="ui:GenericValue" Name="CreditCardPayment" />
       <Variable x:TypeArguments="ui:GenericValue" Name="ReceiptPayment" />
+      <Variable x:TypeArguments="x:String" Name="TableTest" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -139,33 +140,33 @@
         <InArgument x:TypeArguments="s:String[]">[directory.getfiles("C:\Users\Prav\Documents\UiPath\VAHealth\Health Claims Forms Demo\PDFS")]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[HealthData]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="964.666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="Sheet1.xlsx" />
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="964.666666666667,20880.6666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ClaimsFiles]">
+    <ui:BuildDataTable DataTable="[HealthData]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="964.666666666667,58.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientNameValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientDOBValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;SubscriberValueID&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;SubscriberMemberIDValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientRelationshipToSub&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientAddressValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientTypeInsurance&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;AttendingPractionerName&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ProviderNameValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ProviderTaxIDValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ProviderBillingAddressValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientEmployment&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientAutoAccident&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;DateOfIncidentValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;DateOfServiceValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PlaceOfServiceValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;DiagnosisCodeValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;ProcedureCodeValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;UnitsDaysValues&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;AmountPaidValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientProofOfPayment&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PatientInformationRelation&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;TheOtherInformation&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;SubscriberOtherValue&quot; type=&quot;xs:string&quot; default=&quot;100&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;NameofOtherInsuranceValue&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;DidOherInsuranceMakePayment2&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;SubscriberOtherValue /&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="964.666666666667,17864.6666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[ClaimsFiles]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="file" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="928,20742" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="928,17726" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="886,20650" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="886,17634" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[file.ToString]" sap:VirtualizedContainerService.HintSize="844,86.6666666666667" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
-              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'AcroRd32.exe claims-for...'" sap:VirtualizedContainerService.HintSize="844,20431.3333333333" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="72565ba7846003e7de9ac52d6190bffd" Selector="&lt;wnd app='acrord32.exe' cls='AcrobatSDIWindow' title='claims-form*.pdf - Adobe Acrobat Reader DC' /&gt;">
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'AcroRd32.exe claims-for...'" sap:VirtualizedContainerService.HintSize="844,17415.3333333333" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="72565ba7846003e7de9ac52d6190bffd" Selector="&lt;wnd app='acrord32.exe' cls='AcrobatSDIWindow' title='claims-form*.pdf - Adobe Acrobat Reader DC' /&gt;">
                 <ui:WindowScope.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="810,20285.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="810,17269.3333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -212,7 +213,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_44" Text="[PatientNameValue]" />
                       <ui:AnchorBase AnchorPosition="Left" DisplayName="Get Patient Member ID" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_1">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -254,7 +254,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_38" Text="[PatientMemberIDValue]" />
                       <ui:AnchorBase AnchorPosition="Left" DisplayName="Extract Patient Date of Birth" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_2">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -296,7 +295,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_45" Text="[PatientDOBValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Subscriber Value" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_21">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -335,7 +333,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_46" Text="[SubscriberValueID]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Find Subcriber MemberID" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_19">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -374,14 +371,13 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_43" Text="[SubscriberMemberIDValue]" />
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,1949.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1850.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence DisplayName="Checking Patient Relation To Sub" sap:VirtualizedContainerService.HintSize="526,1857.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                        <Sequence DisplayName="Checking Patient Relation To Sub" sap:VirtualizedContainerService.HintSize="526,1758.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="OtherBox" />
                           </Sequence.Variables>
@@ -499,7 +495,6 @@
                               </Assign>
                             </If.Else>
                           </If>
-                          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_64" Text="[PatientRelationshipToSub]" />
                         </Sequence>
                       </Sequence>
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Patient Address" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_22">
@@ -540,8 +535,7 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_50" Text="[PatientAddressValue]" />
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,1857.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1758.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -656,7 +650,6 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_51" Text="[PatientTypeInsurance]" />
                       </Sequence>
                       <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="768,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="pgdn" KeyModifiers="None" SpecialKey="True">
                         <ui:SendHotkey.Target>
@@ -711,7 +704,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_28" Text="[AttendingPractionerNameValue]" />
                       <ui:AnchorBase AnchorPosition="Top" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_17">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -753,7 +745,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_37" Text="[ProviderNameValue]" />
                       <ui:AnchorBase AnchorPosition="Top" DisplayName="Extract Tax ID" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_7">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -795,7 +786,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_27" Text="[ProviderTaxIDValue]" />
                       <ui:AnchorBase AnchorPosition="Top" DisplayName="Provider Address Block" sap:VirtualizedContainerService.HintSize="768,352" sap2010:WorkflowViewState.IdRef="AnchorBase_8">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -837,8 +827,7 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_29" Text="[ProviderBillingAddressValue]" />
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,1004" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,905.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_24">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -899,9 +888,8 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_65" Text="[PatientEmployment]" />
                       </Sequence>
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,1004" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,905.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_25">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -962,7 +950,6 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_53" Text="[PatientAutoAccident]" />
                       </Sequence>
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Date Of Incident" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_9">
                         <ui:AnchorBase.Action>
@@ -1005,7 +992,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_30" Text="[DateofIncidentValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Date of Service " sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_11">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1044,7 +1030,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_31" Text="[DateofServiceValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Place Of Service" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_12">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1083,7 +1068,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_32" Text="[PlaceOfServiceValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Diagnosis Code Extraction" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_13">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1122,7 +1106,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_33" Text="[DiagnosisCodeValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Procedure Code" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_14">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1161,7 +1144,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_34" Text="[ProcedureCodeValue]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Extract Units/Days" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_15">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1200,7 +1182,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_36" Text="[UnitsDaysValues]" />
                       <ui:AnchorBase AnchorPosition="Auto" DisplayName="Amount Paid" sap:VirtualizedContainerService.HintSize="768,198" sap2010:WorkflowViewState.IdRef="AnchorBase_16">
                         <ui:AnchorBase.Action>
                           <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1239,7 +1220,6 @@
                           </ui:WaitUiElementAppear>
                         </ui:AnchorBase.AnchorProvider>
                       </ui:AnchorBase>
-                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="768,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_35" Text="[AmountPaidValue]" />
                       <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey" sap:VirtualizedContainerService.HintSize="768,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="pgdn" KeyModifiers="None" SpecialKey="True">
                         <ui:SendHotkey.Target>
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}">
@@ -1252,7 +1232,7 @@
                           </ui:Target>
                         </ui:SendHotkey.Target>
                       </ui:SendHotkey>
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,1430.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,1332" sap2010:WorkflowViewState.IdRef="Sequence_26">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1340,9 +1320,8 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_63" Text="[PatientProofOfPayment]" />
                       </Sequence>
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,2908" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,2612" sap2010:WorkflowViewState.IdRef="Sequence_27">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1403,7 +1382,6 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_60" Text="[PaymentInformationRelation]" />
                         <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="484,134" sap2010:WorkflowViewState.IdRef="GetAttribute_43">
                           <ui:GetAttribute.Result>
                             <OutArgument x:TypeArguments="ui:GenericValue">[amountboxEX]</OutArgument>
@@ -1446,7 +1424,6 @@
                             </ui:Target>
                           </ui:GetAttribute.Target>
                         </ui:GetAttribute>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_61" Text="[PaymentInformationRelation]" />
                         <If Condition="[AmountBox2EX=&quot;unchecked&quot;]" sap:VirtualizedContainerService.HintSize="484,212.666666666667" sap2010:WorkflowViewState.IdRef="If_44">
                           <If.Else>
                             <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_45">
@@ -1513,9 +1490,8 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="484,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_62" Text="[PaymentInformationRelation]" />
                       </Sequence>
-                      <Sequence sap:VirtualizedContainerService.HintSize="768,2629.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                      <Sequence sap:VirtualizedContainerService.HintSize="768,2234.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_29">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1575,7 +1551,6 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_56" Text="[TheOtherInformation]" />
                         <ui:AnchorBase AnchorPosition="Auto" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_23">
                           <ui:AnchorBase.Action>
                             <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1614,7 +1589,6 @@
                             </ui:WaitUiElementAppear>
                           </ui:AnchorBase.AnchorProvider>
                         </ui:AnchorBase>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_57" Text="[SubscriberOtherValue]" />
                         <ui:AnchorBase AnchorPosition="Auto" DisplayName="Anchor Base" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_24">
                           <ui:AnchorBase.Action>
                             <ActivityAction x:TypeArguments="ui:Anchor">
@@ -1653,7 +1627,6 @@
                             </ui:WaitUiElementAppear>
                           </ui:AnchorBase.AnchorProvider>
                         </ui:AnchorBase>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_58" Text="[NameOfOtherInsuranceValue]" />
                         <ui:GetAttribute ContinueOnError="{x:Null}" Attribute="text" DisplayName="Get Attribute 'check box'" sap:VirtualizedContainerService.HintSize="726,134" sap2010:WorkflowViewState.IdRef="GetAttribute_51">
                           <ui:GetAttribute.Result>
                             <OutArgument x:TypeArguments="ui:GenericValue">[DidOherInsuranceMakePayment1]</OutArgument>
@@ -1708,7 +1681,6 @@
                             </Assign>
                           </If.Else>
                         </If>
-                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="726,58.6666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_59" Text="[DidOherInsuranceMakePayment2]" />
                       </Sequence>
                       <ui:CloseApplication DisplayName="Close All the Forms" sap:VirtualizedContainerService.HintSize="768,106" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
                         <ui:CloseApplication.Target>
@@ -1722,14 +1694,7 @@
                           </ui:Target>
                         </ui:CloseApplication.Target>
                       </ui:CloseApplication>
-                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{PatientAddressValue, PatientNameValue, PatientDOBValue, SubscriberValueID, SubscriberMemberIDValue, PatientRelationshipToSub, PatientAddressValue, PatientTypeInsurance, AttendingPractionerNameValue, ProviderNameValue, ProviderTaxIDValue, ProviderBillingAddressValue,ProviderTaxIDValue, PatientEmployment, PatientAutoAccident, DateofIncidentValue, DateofServiceValue,  PlaceofServiceValue, DiagnosisCodeValue, ProcedureCodeValue, UnitsDaysValues, AmountPaidValue, PatientProofOfPayment, PaymentInformationRelation, TheOtherInformation, SubscriberOtherValue, NameOfOtherInsuranceValue, DidOherInsuranceMakePayment2}]" DataTable="[HealthData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="768,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
-                      <ui:WriteRange AddHeaders="False" DataTable="[HealthData]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="768,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="Sheet1.xlsx">
-                        <ui:WriteRange.StartingCell>
-                          <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" Value="" />
-                          </InArgument>
-                        </ui:WriteRange.StartingCell>
-                      </ui:WriteRange>
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{PatientNameValue, PatientDOBValue, SubscriberValueID, SubscriberMemberIDValue, PatientRelationshipToSub, PatientAddressValue, PatientTypeInsurance, AttendingPractionerNameValue, ProviderNameValue, ProviderTaxIDValue, ProviderBillingAddressValue, PatientEmployment, PatientAutoAccident, DateofIncidentValue, DateofServiceValue,  PlaceofServiceValue, DiagnosisCodeValue, ProcedureCodeValue, UnitsDaysValues, AmountPaidValue, PatientProofOfPayment, PaymentInformationRelation, TheOtherInformation, SubscriberOtherValue, NameOfOtherInsuranceValue, DidOherInsuranceMakePayment2}]" DataTable="[HealthData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="768,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                     </Sequence>
                   </ActivityAction>
                 </ui:WindowScope.Body>
@@ -1739,5 +1704,12 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
+    <ui:WriteRange AddHeaders="True" DataTable="[HealthData]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="964.666666666667,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet2" WorkbookPath="Sheet1.xlsx">
+      <ui:WriteRange.StartingCell>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:WriteRange.StartingCell>
+    </ui:WriteRange>
   </Sequence>
 </Activity>
